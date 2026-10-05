@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Boyfriend Day!</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Vintage Editorial Super Rapi & Unik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ASET DEKORASI BACKGROUND MELAYANG (PARALLAX DYNAMIC) -->
+    <div class="parallax-bg-layer">
+        <img src="kamera no.png" class="bg-asset-film film-top-left float-element" data-speed="2" alt="Film Strip Decor">
+        <img src="roll film.jpeg" class="bg-asset-film film-bottom-right float-element" data-speed="-2" alt="Film Strip Decor">
+        <img src="image_bd8800.jpg" class="bg-asset-camera float-element" data-speed="1.5" alt="Vintage Camera Decor">
+    </div>
+
+    <!-- ==========================================
+         BAGIAN 1: LOCKSCREEN TEKA-TEKI PIN (PASSCODE)
+         ========================================== -->
+    <div id="pin-lockscreen">
+        <video id="flower-video" playsinline muted loop autoplay>
+            <source src="Create_a_beautiful_cinematic_m.mp4" type="video/mp4">
+        </video>
+        
+        <div class="pin-card-wrapper">
+            <div class="pin-card">
+                <span class="v-tag">RESTRICTED MEMORY</span>
+                <h2 class="pin-title">Input Special Number</h2>
+                <p class="pin-subtitle">Hope u Know the pin hahaa</p>
+                
+                <!-- Display PIN Dots -->
+                <div class="pin-dots-container" id="pin-dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+                <!-- Keypad 0-9 -->
+                <div class="numpad">
+                    <button class="num-btn" data-val="1">1</button>
+                    <button class="num-btn" data-val="2">2</button>
+                    <button class="num-btn" data-val="3">3</button>
+                    <button class="num-btn" data-val="4">4</button>
+                    <button class="num-btn" data-val="5">5</button>
+                    <button class="num-btn" data-val="6">6</button>
+                    <button class="num-btn" data-val="7">7</button>
+                    <button class="num-btn" data-val="8">8</button>
+                    <button class="num-btn" data-val="9">9</button>
+                    <button class="num-btn action-btn" id="btn-clear">C</button>
+                    <button class="num-btn" data-val="0">0</button>
+                    <button class="num-btn action-btn" id="btn-submit">➔</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP MODAL SALAH PIN -->
+    <div id="error-popup" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-icon">💔</div>
+            <h3 id="error-message">U really don't know, bae? 🥺</h3>
+            <p>Thinks Again</p>
+            <button id="close-popup-btn">Oh noooo huhuhu</button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         BAGIAN 2: MAIN CONTENT (JOURNAL VINTAGE)
+         ========================================== -->
+    <main id="main-content" class="locked">
+        
+        <!-- HERO SECTION: HEADLINE + FOTO COUPLE BESAR BERDAMPINGAN -->
+        <header class="hero-editorial scroll-anim slide-up">
+            <div class="hero-container">
+                
+                <!-- Kiri: Headline & Quotes -->
+                <div class="hero-text-side">
+                    <div class="vintage-badge">06 October 2026</div>
+                    <h1 class="main-title">Happy  <br><i>Birth</i> Day ♡</h1>
+                    <p class="hero-quote">
+                        "You are proof that perfect guys exist. Happy birthday, sweet man! "
+                    </p>
+                    <div class="vintage-divider"></div>
+                </div>
+
+                <!-- Kanan: Bingkai Foto Couple Besar -->
+                <div class="hero-couple-side">
+                    <div class="couple-frame-wrapper tilt-card">
+                        <div class="stamp-border">
+                            <img src="Utama.jpg" alt="Couple Photo" class="couple-img">
+                        </div>
+                        <div class="frame-tape top-left-tape"></div>
+                        <div class="frame-tape bottom-right-tape"></div>
+                        <div class="couple-caption">flower n message for u</div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- SECTION 1: PIRINGAN HITAM & ROLL FILM 3 BARIS -->
+        <section class="chapter vintage-box">
+            <div class="section-header">
+                <span class="chapter-num">01</span>
+                <h2 class="chapter-title">The songs reminds me of you</h2>
+            </div>
+            
+            <div class="music-film-grid">
+                
+                <!-- SISI KIRI: TURNTABLE (PIRINGAN HITAM) -->
+                <div class="turntable-column scroll-anim slide-right">
+                    <div class="turntable-card">
+                        <div class="turntable">
+                            <div class="vinyl-base">
+                                <div class="vinyl-disc" id="vinyl-disc">
+                                    <div class="vinyl-grooves"></div>
+                                    <div class="vinyl-label">
+                                        <span>Our<br>Music</span>
+                                    </div>
+                                </div>
+                                <div class="tonearm" id="tonearm">
+                                    <div class="tonearm-head"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Playlist Items -->
+                        <div class="playlist">
+                            <div class="music-card" data-src="TULUS - Monokrom (Official Lyric Video).mp3" data-title="Melodi Pertama" data-start="0:43">
+                                <div class="play-btn-icon">▶</div>
+                                <div class="music-meta">
+                                    <h3>TULUS - Monokrom</h3>
+                                    
+                                    
+                                </div>
+                            </div>
+                            <div class="music-card" data-src="Westlife - I Lay My Love on You (Lyrics).mp3" data-title="Senyum Favorit" data-start="2:14">
+                                <div class="play-btn-icon">▶</div>
+                                <div class="music-meta">
+                                    <h3>Westlife - I Lay My Love on You</h3>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SISI KANAN: 3 BARIS BINGKAI ROLL FILM (6 FOTO) -->
+                <div class="film-column scroll-anim slide-left delay-1">
+                    <div class="film-strips-wrapper">
+                        
+                        <div class="film-row">
+                            <div class="film-frame">
+                                <div class="sprocket-holes"></div>
+                                <div class="film-photo" data-message="12 tahun lalu, aku bertemu dengan mu laki laki yang pertama aku kagumi. (2015) ♡">
+                                    <img src="Foto 1.jpg" alt="Roll 1">
+                                </div>
+                                <div class="sprocket-holes"></div>
+                            </div>
+                            <div class="film-frame">
+                                <div class="sprocket-holes"></div>
+                                <div class="film-photo" data-message="Foto pertama waktu kamu mulai mendekat SETELAH SEKIAN LAMA YA! (19/06/2026)">
+                                    <img src="Foto 2.jpg" alt="Roll 2">
+                                </div>
+                                <div class="sprocket-holes"></div>
+                            </div>
+                        </div>
+
+                        <div class="film-row">
+                            <div class="film-frame">
+                                <div class="sprocket-holes"></div>
+                                <div class="film-photo" data-message="pertama kali ketemu adek ponakan yang mirip banget sama kamu (13/07/26).">
+                                    <img src="Foto 3.jpg" alt="Roll 3">
+                                </div>
+                                <div class="sprocket-holes"></div>
+                            </div>
+                            <div class="film-frame">
+                                <div class="sprocket-holes"></div>
+                                <div class="film-photo" data-message="Foto pertama waktu kamu mulai mendekat SETELAH SEKIAN LAMA YA! (19/06/2026).">
+                                    <img src="Foto 4.jpg" alt="Roll 4">
+                                </div>
+                                <div class="sprocket-holes"></div>
+                            </div>
+                        </div>
+
+                        <div class="film-row">
+                            <div class="film-frame">
+                                <div class="sprocket-holes"></div>
+                                <div class="film-photo" data-message="di kasih surprise sama kamu, mama sama mba dateng sedih ga ada kamu (15/08/26).">
+                                    <img src="Foto 5.jpg" alt="Roll 5">
+                                </div>
+                                <div class="sprocket-holes"></div>
+                            </div>
+                            <div class="film-frame">
+                                <div class="sprocket-holes"></div>
+                                <div class="film-photo" data-message="tiba tiba kirim editan kek gini! Semoga tercapai 💖">
+                                    <img src="Foto 6 (1).jpg" alt="Roll 6">
+                                </div>
+                                <div class="sprocket-holes"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </section>
+
+        <!-- SECTION 2: SURAT CINTA VINTAGE -->
+        <section class="chapter letter-section">
+            <div class="letter-paper scroll-anim fade-up">
+                <div class="corner-ornament top-left"></div>
+                <div class="corner-ornament bottom-right"></div>
+                <div class="wax-seal">♡</div>
+                <div class="letter-content">
+                    <p id="typewriter-text"></p>
+                </div>
+                <div class="signature hidden-sign" id="signature">
+                    For u,<br>
+                    <span>Your Baee ♡</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="scroll-anim fade-in">
+            <h2>Forever & Always</h2>
+            <p>Created with love for Poo ♡</p>
+        </footer>
+
+    </main>
+<div id="photo-modal" class="photo-modal-overlay">
+        <div class="photo-modal-box">
+            <button class="photo-modal-close" id="close-photo-modal">&times;</button>
+            <div class="photo-modal-img-wrapper">
+                <img id="modal-photo-img" src="" alt="Close up photo">
+            </div>
+            <div class="photo-modal-paper">
+                <span class="paper-pin">📌</span>
+                <p id="modal-photo-message" class="hidden-message-text"></p>
+            </div>
+        </div>
+    </div>
+    <audio id="global-audio" preload="auto"></audio>
+    <script src="script.js"></script>
+</body>
+</html>

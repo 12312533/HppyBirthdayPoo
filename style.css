@@ -1,0 +1,695 @@
+/* ==========================================
+   SISTEM DESAIN & VARIABEL DOKUMEN
+   ========================================== */
+:root {
+    --bg-dark: #12100e;
+    --text-primary: #2c2520;
+    --text-muted: #6b5e52;
+    --accent-red: #8b2626;
+    --accent-gold: #c5a059;
+    --paper-light: #f7f2e8;
+    --paper-card: rgba(255, 252, 246, 0.92);
+    
+    --font-head: 'Playfair Display', serif;
+    --font-subhead: 'Cinzel', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-italic: 'Cormorant Garamond', serif;
+    --font-script: 'Alex Brush', cursive;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    /* BACKGROUND UTAMA TEKSTUR KERTAS VINTAGE */
+    background: url('image_bd885c.png') repeat center center / cover attachment fixed;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==========================================
+   ASET BACKGROUND DINAMIS (PARALLAX)
+   ========================================== */
+.parallax-bg-layer {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bg-asset-film {
+    position: absolute;
+    width: 280px;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+    filter: sepia(70%);
+    transition: transform 0.2s cubic-bezier(0.1, 0.2, 0.1, 1);
+}
+
+.film-top-left { top: -40px; left: -60px; transform: rotate(-20deg); }
+.film-bottom-right { bottom: -50px; right: -60px; transform: rotate(25deg); }
+
+.bg-asset-camera {
+    position: absolute;
+    bottom: 8%; left: 3%;
+    width: 140px;
+    opacity: 0.15;
+    mix-blend-mode: multiply;
+    filter: sepia(80%);
+    transition: transform 0.2s cubic-bezier(0.1, 0.2, 0.1, 1);
+}
+
+/* ==========================================
+   BAGIAN 1: LOCKSCREEN TEKA-TEKI PIN
+   ========================================== */
+#pin-lockscreen {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 9999;
+    background: #000;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1), transform 1.2s ease;
+}
+
+#flower-video {
+    position: absolute;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    filter: blur(4px) brightness(0.7);
+}
+
+.pin-card-wrapper {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.pin-card {
+    background: rgba(23, 19, 16, 0.85);
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 35px 30px;
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+    max-width: 380px;
+    width: 100%;
+}
+
+.v-tag {
+    font-family: var(--font-subhead);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--accent-gold);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.pin-title {
+    font-family: var(--font-head);
+    font-size: 1.8rem;
+    color: #f7f2e8;
+}
+
+.pin-subtitle {
+    font-family: var(--font-italic);
+    font-size: 1.1rem;
+    color: #d1c2a5;
+    margin-bottom: 25px;
+}
+
+/* PIN Dots Display */
+.pin-dots-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.pin-dots-container .dot {
+    width: 16px; height: 16px;
+    border: 2px solid var(--accent-gold);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.pin-dots-container .dot.filled {
+    background: var(--accent-gold);
+    box-shadow: 0 0 12px var(--accent-gold);
+}
+
+/* Numpad Grid */
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+.num-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-family: var(--font-subhead);
+    font-size: 1.25rem;
+    padding: 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.num-btn:hover {
+    background: var(--accent-gold);
+    color: #000;
+    transform: scale(1.05);
+}
+
+.num-btn.action-btn {
+    background: rgba(139, 38, 38, 0.4);
+    color: var(--accent-gold);
+}
+
+/* POPUP MODAL EROR */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1; pointer-events: auto;
+}
+
+.modal-box {
+    background: #fffdfa;
+    border: 2px solid var(--accent-red);
+    padding: 30px 25px;
+    border-radius: 18px;
+    text-align: center;
+    max-width: 320px;
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-box { transform: scale(1); }
+.modal-icon { font-size: 2.5rem; margin-bottom: 10px; }
+.modal-box h3 { font-family: var(--font-head); color: var(--accent-red); font-size: 1.3rem; margin-bottom: 8px; }
+.modal-box p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+
+#close-popup-btn {
+    background: var(--accent-red);
+    color: #fff; border: none;
+    padding: 10px 24px; border-radius: 25px;
+    font-family: var(--font-body); font-size: 0.85rem;
+    cursor: pointer; transition: background 0.3s ease;
+}
+
+#close-popup-btn:hover { background: var(--accent-gold); }
+
+/* Shake Animation jika PIN Salah */
+.shake-anim {
+    animation: shakeKeypad 0.4s ease-in-out;
+}
+
+@keyframes shakeKeypad {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-12px); }
+    40%, 80% { transform: translateX(12px); }
+}
+
+/* ==========================================
+   BAGIAN 2: MAIN CONTENT & EDITORIAL HERO
+   ========================================== */
+#main-content {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 60px 20px 40px;
+    position: relative;
+    z-index: 1;
+}
+
+#main-content.locked {
+    opacity: 0; pointer-events: none;
+    transform: translateY(60px);
+}
+
+#main-content.unlocked {
+    opacity: 1; pointer-events: auto;
+    transform: translateY(0);
+    transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* HERO EDITORIAL SECTION */
+.hero-editorial { margin-bottom: 90px; }
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.vintage-badge {
+    display: inline-block;
+    border: 1px dashed var(--accent-gold);
+    padding: 5px 14px;
+    font-family: var(--font-subhead);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--accent-red);
+    margin-bottom: 15px;
+}
+
+.main-title {
+    font-family: var(--font-head);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+}
+
+.main-title i {
+    font-family: var(--font-italic);
+    font-weight: 400;
+    color: var(--accent-red);
+}
+
+.hero-quote {
+    font-family: var(--font-italic);
+    font-size: 1.35rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.vintage-divider {
+    width: 80px; height: 2px;
+    background: var(--accent-gold);
+}
+
+/* Bingkai Couple Besar (Right Side) */
+.couple-frame-wrapper {
+    position: relative;
+    background: #fff;
+    padding: 18px 18px 45px;
+    box-shadow: 0 20px 45px rgba(80,50,30,0.15);
+    border: 1px solid #e2d8c7;
+    transform: rotate(2deg);
+    transition: transform 0.5s ease;
+}
+
+.couple-frame-wrapper:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.couple-img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    filter: sepia(20%);
+}
+
+.couple-caption {
+    font-family: var(--font-script);
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 15px;
+    color: var(--accent-red);
+}
+
+.frame-tape {
+    position: absolute;
+    width: 90px; height: 28px;
+    background: rgba(220, 205, 175, 0.6);
+    backdrop-filter: blur(2px);
+    border: 1px dashed rgba(0,0,0,0.1);
+}
+
+.top-left-tape { top: -12px; left: -25px; transform: rotate(-25deg); }
+.bottom-right-tape { bottom: -12px; right: -25px; transform: rotate(-15deg); }
+
+/* ==========================================
+   SECTION 1: MUSIC & ROLL FILM 3 BARIS
+   ========================================== */
+.vintage-box {
+    background: var(--paper-card);
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    padding: 45px 35px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(80,50,30,0.08);
+    margin-bottom: 90px;
+}
+
+.section-header { margin-bottom: 35px; }
+
+.chapter-num {
+    font-family: var(--font-subhead);
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    letter-spacing: 3px;
+    display: block;
+}
+
+.chapter-title {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.music-film-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+/* TURNTABLE STYLING */
+.turntable-card {
+    background: rgba(255,255,255,0.7);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.turntable {
+    width: 210px; height: 210px;
+    background: #1e1915;
+    border-radius: 18px;
+    padding: 12px;
+    margin: 0 auto 25px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.vinyl-base {
+    width: 100%; height: 100%;
+    background: #111; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+}
+
+.vinyl-disc {
+    width: 165px; height: 165px;
+    background: repeating-radial-gradient(#111, #111 2px, #222 3px, #111 4px);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    transition: transform 0.5s ease;
+}
+
+.vinyl-disc.spinning { animation: spinVinyl 3s linear infinite; }
+@keyframes spinVinyl { 100% { transform: rotate(360deg); } }
+
+.vinyl-label {
+    width: 55px; height: 55px;
+    background: var(--accent-red);
+    border-radius: 50%; border: 3px solid #fff;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; color: white; font-size: 0.5rem; font-weight: bold;
+}
+
+.tonearm {
+    position: absolute; top: 12px; right: 12px;
+    width: 50px; height: 6px; background: #999;
+    transform-origin: right center; transform: rotate(-30deg);
+    transition: transform 0.8s ease;
+}
+.tonearm.active { transform: rotate(12deg); }
+.tonearm-head { position: absolute; left: 0; top: -3px; width: 10px; height: 12px; background: var(--accent-gold); }
+
+/* Playlist */
+.playlist { display: flex; flex-direction: column; gap: 12px; }
+.music-card {
+    display: flex; align-items: center; gap: 14px;
+    background: #fff; padding: 12px 16px; border-radius: 10px;
+    cursor: pointer; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.04);
+}
+.music-card:hover { transform: translateX(6px); border-left: 4px solid var(--accent-red); }
+.play-btn-icon {
+    width: 34px; height: 34px; background: var(--accent-red);
+    color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;
+}
+.music-meta h3 { font-family: var(--font-head); font-size: 1rem; }
+.music-meta p { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ROLL FILM 3 BARIS (6 FOTO) */
+.film-strips-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.film-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    background: #111;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.film-frame {
+    background: #000;
+    padding: 6px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sprocket-holes {
+    height: 8px;
+    background: repeating-linear-gradient(90deg, #fff 0px, #fff 6px, transparent 6px, transparent 12px);
+    opacity: 0.7;
+}
+
+.film-photo {
+    width: 100%;
+    height: 110px;
+    overflow: hidden;
+}
+
+.film-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: sepia(40%) contrast(1.1);
+    transition: all 0.5s ease;
+}
+
+.film-frame:hover .film-photo img {
+    filter: sepia(0%) scale(1.1);
+}
+
+/* ==========================================
+   SECTION 2: SURAT CINTA VINTAGE
+   ========================================== */
+.letter-paper {
+    background: #fffdf8;
+    padding: 50px 40px;
+    position: relative;
+    border: 1px solid rgba(197, 160, 89, 0.5);
+    box-shadow: 0 15px 35px rgba(80,50,30,0.1);
+    border-radius: 6px;
+}
+
+.wax-seal {
+    position: absolute; top: 25px; right: 30px;
+    width: 48px; height: 48px; background: var(--accent-red);
+    color: #fff; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-size: 1.3rem;
+    box-shadow: 0 4px 12px rgba(139,38,38,0.3);
+}
+
+#typewriter-text {
+    font-family: var(--font-italic);
+    font-size: 1.4rem;
+    line-height: 1.8;
+    white-space: pre-line;
+    color: var(--text-primary);
+    min-height: 140px;
+}
+
+.signature {
+    margin-top: 30px; text-align: right;
+    font-size: 0.9rem; transition: opacity 1.5s ease;
+}
+.signature.hidden-sign { opacity: 0; }
+.signature span {
+    font-family: var(--font-script);
+    font-size: 3rem; color: var(--accent-red); display: block;
+}
+
+footer { text-align: center; padding: 50px 0 20px; }
+footer h2 { font-family: var(--font-script); font-size: 2.5rem; color: var(--accent-red); }
+footer p { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ANIMASI SCROLL REVEAL */
+.scroll-anim {
+    opacity: 0; transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.slide-up { transform: translateY(40px); }
+.slide-left { transform: translateX(40px); }
+.slide-right { transform: translateX(-40px); }
+.fade-up { transform: translateY(30px); }
+
+.scroll-anim.is-visible {
+    opacity: 1; transform: translate(0);
+}
+
+.delay-1 { transition-delay: 0.2s; }
+
+/* RESPONSIF */
+@media (max-width: 768px) {
+    .hero-container { grid-template-columns: 1fr; }
+    .music-film-grid { grid-template-columns: 1fr; }
+    .couple-img { height: 280px; }
+}
+/* ==========================================
+   INTERAKSI CLOSE-UP FOTO & PESAN TERSEMBUNYI
+   ========================================== */
+.film-photo {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay Hover Petunjuk Klik */
+.film-photo::after {
+    content: '🔍 Klik Pesan';
+    position: absolute;
+    inset: 0;
+    background: rgba(139, 38, 38, 0.75);
+    color: #fff;
+    font-size: 0.75rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    padding: 5px;
+    backdrop-filter: blur(2px);
+}
+
+.film-photo:hover::after {
+    opacity: 1;
+}
+
+/* Modal Overlay Popup */
+.photo-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100vw; height: 100vh;
+    background: rgba(18, 16, 14, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 10001;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    opacity: 0; 
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    padding: 20px;
+}
+
+.photo-modal-overlay.active {
+    opacity: 1; 
+    pointer-events: auto;
+}
+
+/* Kotak Frame Close-Up */
+.photo-modal-box {
+    background: var(--paper-light);
+    border: 2px solid var(--accent-gold);
+    padding: 22px;
+    border-radius: 18px;
+    max-width: 450px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    transform: scale(0.85) rotate(-2deg);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.photo-modal-overlay.active .photo-modal-box {
+    transform: scale(1) rotate(0deg);
+}
+
+.photo-modal-close {
+    position: absolute;
+    top: -14px; right: -14px;
+    width: 36px; height: 36px;
+    background: var(--accent-red);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 2;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.photo-modal-close:hover {
+    transform: scale(1.15);
+    background: var(--accent-gold);
+}
+
+.photo-modal-img-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #e2d8c7; /* Memberikan warna background senada jika foto punya rasio berbeda */
+    border-radius: 10px;
+    border: 4px solid #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.photo-modal-img-wrapper img {
+    width: 100%;
+    max-height: 55vh; /* Membatasi tinggi foto maksimal 55% dari tinggi layar */
+    object-fit: contain; /* Ini kuncinya: Memaksa seluruh foto tampil utuh tanpa dipotong */
+    border-radius: 6px;
+}
+
+/* Kertas Pesan Tersembunyi */
+.photo-modal-paper {
+    background: #fffdf8;
+    border: 1px dashed var(--accent-gold);
+    padding: 16px 20px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(197, 160, 89, 0.1);
+}
+
+.paper-pin {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+}
+
+.hidden-message-text {
+    font-family: var(--font-italic);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 4px;
+}
